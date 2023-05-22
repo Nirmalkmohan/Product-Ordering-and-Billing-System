@@ -21,9 +21,12 @@ is_gift_wrapped = {}
 for product_item, price in products.items():
     quantity = int(input(f"Enter the quantity of {product_item}: {price} rupees\n"))
     product_quantities[product_item] = quantity
-    gift_wrap = input(f"Add gift wrap for {product_item}? (y/n): ").lower() == 'y'
-    is_gift_wrapped[product_item] = gift_wrap
-
+    if quantity > 0:
+        gift_wrap = input(f"Add gift wrap for {product_item}? (y/n): ").lower() == 'y'
+        is_gift_wrapped[product_item] = gift_wrap
+    else:
+        is_gift_wrapped[product_item] = False
+        
 # Calculate subtotal
 subtotal = sum(products[product_item] * quantity for product_item, quantity in product_quantities.items())
 
